@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.app02.dao.StudentCourseMapper">
+    <select id="selectAll" resultType="com.briup.apps.app02.bean.StudentCourse">
+    select * from sms_studentcourse
+  </select>
+    <select id="selectByPrimaryKey" resultType="com.briup.apps.app02.bean.StudentCourse">
+    select * from sms_studentcourse where id=#{id}
+  </select>
+    <insert id="insert" parameterType="com.briup.apps.app02.bean.StudentCourse">
+       insert into sms_studentcourse(id,name,description,credit,teacher_id)
+       values  (#{id},#{name} ,#{description} ,#{credit} ,#{teacher_id})
+   </insert>
+    <update id="update" parameterType="com.briup.apps.app02.bean.StudentCourse">
+        update sms_studentcourse
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="description != null">description=#{description},</if>
+            <if test="credit != null">credit=#{credit},</if>
+            <if test="teacher_id != null">teacher_id=#{teacher_id},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="com.briup.apps.app02.bean.StudentCourse">
+        delete from sms_studentcourse where id=#{id}
+    </delete>
+</mapper>
