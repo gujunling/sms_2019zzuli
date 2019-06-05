@@ -10,16 +10,16 @@
     select * from sms_studentcourse where id=#{id}
   </select>
     <insert id="insert" parameterType="com.briup.apps.app02.bean.StudentCourse">
-       insert into sms_studentcourse(id,name,description,credit,teacher_id)
-       values  (#{id},#{name} ,#{description} ,#{credit} ,#{teacher_id})
+       insert into sms_studentcourse(id,xk_time,grade,student_id,course_id)
+       values  (#{id},#{xk_time} ,#{grade} ,#{student_id} ,#{course_id})
    </insert>
     <update id="update" parameterType="com.briup.apps.app02.bean.StudentCourse">
         update sms_studentcourse
         <set>
-            <if test="name != null">name=#{name},</if>
-            <if test="description != null">description=#{description},</if>
-            <if test="credit != null">credit=#{credit},</if>
-            <if test="teacher_id != null">teacher_id=#{teacher_id},</if>
+            <if test="xk_time != null">xk_time=#{xk_time},</if>
+            <if test="grade != null">grade=#{grade},</if>
+            <if test="student_id != null">student_id=#{student_id},</if>
+            <if test="course_id != null">course_id=#{course_id},</if>
         </set>
         where id = #{id}
     </update>
