@@ -2,6 +2,7 @@ package com.briup.apps.app02.web.controller;
 
 import com.briup.apps.app02.bean.Course;
 import com.briup.apps.app02.bean.User;
+import com.briup.apps.app02.bean.extend.CourseExtend;
 import com.briup.apps.app02.service.ICourseService;
 import com.briup.apps.app02.utils.Message;
 import com.briup.apps.app02.utils.MessageUtil;
@@ -35,6 +36,12 @@ public class CourseController {
     @GetMapping("findAll")
     public Message findAll(){
        List<Course> list=courseService.findAll();
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("查询所有,课程中携带任课老师的信息")
+    @GetMapping("findAllWithTeacher")
+    public Message findAllWithTeacher(){
+        List<CourseExtend> list = courseService.findAllWithTeacher();
         return MessageUtil.success("success",list);
     }
     @ApiOperation("通过id查询课程")
