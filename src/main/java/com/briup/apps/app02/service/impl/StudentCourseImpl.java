@@ -1,10 +1,12 @@
 package com.briup.apps.app02.service.impl;
 
 import com.briup.apps.app02.bean.StudentCourse;
+import com.briup.apps.app02.bean.extend.CourseExtend;
+import com.briup.apps.app02.bean.extend.StudentCourseExtend;
 import com.briup.apps.app02.dao.StudentCourseMapper;
+import com.briup.apps.app02.dao.extend.StudentCourseExtendMapper;
 import com.briup.apps.app02.service.IStudentCourseService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -16,6 +18,9 @@ import java.util.List;
 public class StudentCourseImpl implements IStudentCourseService {
     @Resource
     private StudentCourseMapper studentCourseMapper;
+    @Resource
+    private StudentCourseExtendMapper studentcourseextendMapper;
+
     @Override
     public List<StudentCourse> findAll() {
         return studentCourseMapper.selectAll();
@@ -24,6 +29,21 @@ public class StudentCourseImpl implements IStudentCourseService {
     @Override
     public StudentCourse findById(long id) {
         return studentCourseMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<StudentCourseExtend> findcoursenameById() {
+        return studentcourseextendMapper.selectxkcourse();
+    }
+
+    @Override
+    public List<StudentCourseExtend> findstucourseById() {
+        return studentcourseextendMapper.selectstucourse();
+    }
+
+    @Override
+    public List<StudentCourseExtend> findteacourseById() {
+        return studentcourseextendMapper.selectteacourse();
     }
 
     @Override

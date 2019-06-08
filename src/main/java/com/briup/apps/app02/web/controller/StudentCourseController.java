@@ -1,6 +1,8 @@
 package com.briup.apps.app02.web.controller;
 
 import com.briup.apps.app02.bean.StudentCourse;
+import com.briup.apps.app02.bean.extend.CourseExtend;
+import com.briup.apps.app02.bean.extend.StudentCourseExtend;
 import com.briup.apps.app02.service.IStudentCourseService;
 import com.briup.apps.app02.utils.Message;
 import com.briup.apps.app02.utils.MessageUtil;
@@ -27,6 +29,24 @@ public class StudentCourseController {
     @GetMapping("findAll")
     public Message findAll(){
         List<StudentCourse> list=studentCourseService.findAll();
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过课程查询所有选了这门课程的学生信息和选课的详细信息")
+    @GetMapping("findcoursenameById")
+    public Message findcoursenameById(){
+        List<StudentCourseExtend> list = studentCourseService.findcoursenameById();
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过学生id查询出该学生选择了哪些课程")
+    @GetMapping("findstucourseById")
+    public Message findstucourseById(){
+        List<StudentCourseExtend> list = studentCourseService.findstucourseById();
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过老师id查询出该老师教哪些课程")
+    @GetMapping("findteacourseById")
+    public Message findteacourseById(){
+        List<StudentCourseExtend> list = studentCourseService.findteacourseById();
         return MessageUtil.success("success",list);
     }
     @ApiOperation("通过id查询选课信息")

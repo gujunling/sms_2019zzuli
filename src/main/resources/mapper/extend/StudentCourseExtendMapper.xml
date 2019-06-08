@@ -3,5 +3,79 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.briup.apps.app02.dao.extend.StudentCourseExtendMapper">
-
+    <select id="selectxkcourse" resultMap="studentcourseExtendResultMap">
+        select
+            c.name,
+            c.description,
+            c.credit,
+            c.teacher_id,
+            t.xk_time,
+            t.grade
+        from sms_studentcourse t left join  sms_course c
+        on t.course_id = c.id
+    </select>
+    <resultMap id="studentcourseExtendResultMap"
+               type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
+        <id column="t.id" property="id"/>
+        <result column="xk_time" property="xk_time"/>
+        <result column="grade" property="grade"/>
+        <association property="coursename" javaType="com.briup.apps.app02.bean.Course">
+            <id column="c.id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="description" property="description"/>
+            <result column="credit" property="credit"/>
+            <result column="teacher_id" property="teacher_id"/>
+        </association>
+    </resultMap>
+    <select id="selectstucourse" resultMap="studentcourseExtendResultMap1">
+        select
+            c.id,
+            c.name,
+            c.description,
+            c.credit,
+            t.xk_time,
+            t.grade
+        from sms_studentcourse t left join  sms_course c
+        on  t.course_id = c.id
+    </select>
+    <resultMap id="studentcourseExtendResultMap1"
+               type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
+        <id column="t.id" property="id"/>
+        <result column="xk_time" property="xk_time"/>
+        <result column="grade" property="grade"/>
+        <association property="stucourse" javaType="com.briup.apps.app02.bean.Course">
+            <id column="c.id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="description" property="description"/>
+            <result column="credit" property="credit"/>
+        </association>
+    </resultMap>
+    <select id="selectteacourse" resultMap="studentcourseExtendResultMap2">
+        select
+            c.id ,
+            c.name,
+            c.description,
+            c.credit,
+            c.teacher_id,
+            t.id ,
+            t.xk_time,
+            t.grade,
+            t.course_id
+        from sms_course c right join sms_studentcourse t
+        on c.id = t.course_id
+    </select>
+        <resultMap id="studentcourseExtendResultMap2"
+                   type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
+            <id column="t.id" property="id"/>
+            <result column="xk_time" property="xk_time"/>
+            <result column="grade" property="grade"/>
+            <result column="student_id" property="student_id"/>
+            <association property="teacourse" javaType="com.briup.apps.app02.bean.Course">
+                <id column="c.id" property="id"/>
+                <result column="name" property="name"/>
+                <result column="description" property="description"/>
+                <result column="credit" property="credit"/>
+                <result column="teacher_id" property="teacher_id"/>
+            </association>
+        </resultMap>
 </mapper>
