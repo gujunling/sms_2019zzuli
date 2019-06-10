@@ -23,7 +23,7 @@
         <result column="name" property="name"/>
         <result column="description" property="description"/>
         <result column="credit" property="credit"/>
-        <result column="teacher_id" property="teacher_id"/>
+        <result column="teacher_id" property="teacherId"/>
         <association property="teacher" javaType="com.briup.apps.app02.bean.User">
             <id column="t_id" property="id"/>
             <result column="realname" property="realname"/>

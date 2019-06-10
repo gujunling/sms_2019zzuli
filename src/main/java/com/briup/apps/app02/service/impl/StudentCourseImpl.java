@@ -1,7 +1,7 @@
 package com.briup.apps.app02.service.impl;
 
 import com.briup.apps.app02.bean.StudentCourse;
-import com.briup.apps.app02.bean.extend.CourseExtend;
+import com.briup.apps.app02.bean.StudentCourseExample;
 import com.briup.apps.app02.bean.extend.StudentCourseExtend;
 import com.briup.apps.app02.dao.StudentCourseMapper;
 import com.briup.apps.app02.dao.extend.StudentCourseExtendMapper;
@@ -23,7 +23,8 @@ public class StudentCourseImpl implements IStudentCourseService {
 
     @Override
     public List<StudentCourse> findAll() {
-        return studentCourseMapper.selectAll();
+        StudentCourseExample example  =new StudentCourseExample();
+        return studentCourseMapper.selectByExample(example);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class StudentCourseImpl implements IStudentCourseService {
         if (studentCourse.getId() == null) {
             studentCourseMapper.insert(studentCourse);
         } else {
-            studentCourseMapper.update(studentCourse);
+            studentCourseMapper.updateByPrimaryKey(studentCourse);
         }
     }
 

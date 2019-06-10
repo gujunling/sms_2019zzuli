@@ -1,6 +1,7 @@
 package com.briup.apps.app02.service.impl;
 
 import com.briup.apps.app02.bean.Course;
+import com.briup.apps.app02.bean.CourseExample;
 import com.briup.apps.app02.bean.extend.CourseExtend;
 import com.briup.apps.app02.dao.CourseMapper;
 import com.briup.apps.app02.dao.extend.CourseExtendMapper;
@@ -24,17 +25,37 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public List<Course> query(Course course) {
-        return courseMapper.query(course);
+
+        // 创建空模板
+        CourseExample example = new CourseExample();
+        // 在模板中添加条件
+        if(course.getName()!=null){
+            example
+                    .createCriteria()
+                    .andNameLike("%"+course.getName()+"%");
+        }
+        if(course.getDescription()!=null){
+            example
+                    .createCriteria()
+                    .andDescriptionLike("%"+course.getDescription()+"%");
+        }
+        if(course.getCredit()!=null){
+            example.createCriteria().andCreditEqualTo(+course.getCredit());
+        }
+
+        return courseMapper.selectByExample(example);
     }
 
     @Override
     public List<Course> findAll() {
+        CourseExample example= new CourseExample();
 
-        return courseMapper.selectAll();
+        return courseMapper.selectByExample(example);
     }
 
     @Override
     public Course findById(long id) {
+
         return courseMapper.selectByPrimaryKey(id);
     }
 
@@ -48,7 +69,7 @@ public class CourseServiceImpl implements ICourseService {
         if (course.getId() == null) {
             courseMapper.insert(course);
         } else {
-            courseMapper.update(course);
+            courseMapper.updateByPrimaryKey(course);
         }
     }
 

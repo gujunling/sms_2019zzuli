@@ -17,14 +17,14 @@
     <resultMap id="studentcourseExtendResultMap"
                type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
         <id column="t.id" property="id"/>
-        <result column="xk_time" property="xk_time"/>
+        <result column="xk_time" property="xkTime"/>
         <result column="grade" property="grade"/>
         <association property="coursename" javaType="com.briup.apps.app02.bean.Course">
             <id column="c.id" property="id"/>
             <result column="name" property="name"/>
             <result column="description" property="description"/>
             <result column="credit" property="credit"/>
-            <result column="teacher_id" property="teacher_id"/>
+            <result column="teacher_id" property="teacherId"/>
         </association>
     </resultMap>
     <select id="selectstucourse" resultMap="studentcourseExtendResultMap1">
@@ -41,9 +41,9 @@
     <resultMap id="studentcourseExtendResultMap1"
                type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
         <id column="t.id" property="id"/>
-        <result column="xk_time" property="xk_time"/>
+        <result column="xk_time" property="xkTime"/>
         <result column="grade" property="grade"/>
-        <association property="stucourse" javaType="com.briup.apps.app02.bean.Course">
+        <association property="coursename" javaType="com.briup.apps.app02.bean.Course">
             <id column="c.id" property="id"/>
             <result column="name" property="name"/>
             <result column="description" property="description"/>
@@ -67,15 +67,15 @@
         <resultMap id="studentcourseExtendResultMap2"
                    type="com.briup.apps.app02.bean.extend.StudentCourseExtend">
             <id column="t.id" property="id"/>
-            <result column="xk_time" property="xk_time"/>
+            <result column="xk_time" property="xkTime"/>
             <result column="grade" property="grade"/>
-            <result column="student_id" property="student_id"/>
-            <association property="teacourse" javaType="com.briup.apps.app02.bean.Course">
+            <result column="student_id" property="studentId"/>
+            <association property="coursename" javaType="com.briup.apps.app02.bean.Course">
                 <id column="c.id" property="id"/>
                 <result column="name" property="name"/>
                 <result column="description" property="description"/>
                 <result column="credit" property="credit"/>
-                <result column="teacher_id" property="teacher_id"/>
+                <result column="teacher_id" property="teacherId"/>
             </association>
         </resultMap>
 </mapper>
